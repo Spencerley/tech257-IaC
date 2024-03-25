@@ -1,0 +1,63 @@
+# Starts with --- three dashes
+---
+# where do you want to run or install this playbook
+- hosts: web
+
+# would you like to see the logs?
+  gather_facts: yes
+
+# provide admin access to this playbook - use sudo
+  become: true
+
+# instructions - tasks install nginx in agent node
+  tasks:
+  - name: "Add nodejs apt key"
+    apt_key:
+      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+      state: present
+ 
+  - name: "Add nodejs 17.x ppa for apt repo"
+    apt_repository:
+      repo: deb https://deb.nodesource.com/node_17.x bionic main
+      update_cache: yes
+ 
+  - name: Install nodejs
+    apt:
+      name: nodejs
+      state: present
+
+# clone the repo app
+  - name: clone the repository
+      git:
+        repo: https://github.com/Spencerley/tech257-cicd-app.git
+        dest: /home/ubuntu/tech257-cicd-app/
+        clone: yes
+        update: yes
+
+# cd into the directory
+  - name: cd into the directory
+      shell: cd /home/ubuntu/tech257-cicd-app/app
+
+# install the app dependencies
+  - name: Install the app dependencies
+      npm:
+        path: /home/ubuntu/tech257-cicd-app/app
+        state: present
+
+# install pm2
+  - name: install pm2
+      npm:
+        name: pm2
+        global: yes
+        state: present
+
+#pm2 stop all
+  - name: pm2 stop all
+    command: pm2 stop all
+    ignore_errors: true
+    become_user: ubuntu
+
+# Run pm2 start
+  - name: Run pm2 start
+    command: chdir=/home/ubuntu/repo/app/app pm2 start app.js -f
+    become_user: ubuntu
