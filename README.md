@@ -29,6 +29,7 @@ IaC is a good option for any organization that wants to automate the management 
 - Deploy applications frequently
 - Use cloud computing platforms
 - Have a large and complex infrastructure
+- For any repetetive tasks the we have to run
 
 ## Where to use IaC?
 IaC can be used to provision and manage a wide range of infrastructure resources, including:
