@@ -7,7 +7,7 @@
   - [Where to use IaC?](#where-to-use-iac)
   - [IaC Tools:](#iac-tools)
     - [Deeper dive into tooling:](#deeper-dive-into-tooling)
-    - [Choosing the right tool depends on your specific needs.  Here's a quick guideline:](#choosing-the-right-tool-depends-on-your-specific-needs--heres-a-quick-guideline)
+    - [Choosing the right tool depends on your specific needs. Here's a quick guideline:](#choosing-the-right-tool-depends-on-your-specific-needs-heres-a-quick-guideline)
   - [Ansible and its Benefits:](#ansible-and-its-benefits)
   - [Who's using IaC and Ansible?](#whos-using-iac-and-ansible)
 
@@ -48,6 +48,8 @@ There are several popular tools available for IaC, including:
 - Ansible: An open-source tool that can be used for configuration management, application deployment, and IaC.
 - AWS CloudFormation: A proprietary tool from Amazon Web Services (AWS) that can be used to provision and manage AWS resources.
 - Azure Resource Manager (ARM): A proprietary tool from Microsoft Azure that can be used to provision and manage Azure resources.
+- Puppet: 
+- Chef: similar to Ansible for Configuration Management.
 
 ### Deeper dive into tooling:
 1. Terraform:
@@ -110,7 +112,7 @@ There are several popular tools available for IaC, including:
 - Vendor lock-in: Limits you to the Microsoft Azure cloud platform.
 - Similar limitations to CloudFormation with regards to template language and flexibility.
 
-### Choosing the right tool depends on your specific needs.  Here's a quick guideline:
+### Choosing the right tool depends on your specific needs. Here's a quick guideline:
 
 - If you need a multi-cloud or on-premises IaC solution with strong state management, Terraform is a good choice.
 - If you prefer a simple and agentless tool for IaC or broader configuration management tasks, Ansible can be a great fit.
