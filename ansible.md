@@ -1,6 +1,6 @@
 # Ansible Controllers and Agents
 
-![Diagram](<images/Screenshot 2024-03-25 122405.png>)
+![alt text](images/diagram-ansible.png)
 
 ## Ansible
 
@@ -20,6 +20,6 @@
     - host has to be app agent ip
     - key files `<path to your private key>`
 3. Add your agents IP to the hosts folder
-    ![ip structure](<images/Screenshot 2024-03-25 133410.png>)
+    ![alt text](images/ip-structure.png)
 4. Use the adhoc command to copy our ssh key from our controller to our agent:
     - `sudo ansible web -m ansible.builtin.copy -a "src=~/.ssh/tech257.pem dest=~/.ssh/"`
