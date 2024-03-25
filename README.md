@@ -1,5 +1,15 @@
 # Infrastructure as Code (IaC)
 
+- [Infrastructure as Code (IaC)](#infrastructure-as-code-iac)
+  - [What is IaC?](#what-is-iac)
+  - [Why use IaC?](#why-use-iac)
+  - [When to use IaC?](#when-to-use-iac)
+  - [Where to use IaC?](#where-to-use-iac)
+  - [IaC Tools:](#iac-tools)
+  - [Ansible and its Benefits:](#ansible-and-its-benefits)
+  - [Who's using IaC and Ansible?](#whos-using-iac-and-ansible)
+
+
 ## What is IaC?
 IaC is the practice of managing and provisioning infrastructure through code instead of manual processes. Instead of physically configuring servers or using point-and-click interfaces, IaC uses configuration files that define the desired state of your infrastructure. These files are then used by tools to automatically create and manage your infrastructure resources.
 
