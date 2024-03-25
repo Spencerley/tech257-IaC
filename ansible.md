@@ -23,3 +23,22 @@
     ![alt text](images/ip-structure.png)
 4. Use the adhoc command to copy our ssh key from our controller to our agent:
     - `sudo ansible web -m ansible.builtin.copy -a "src=~/.ssh/tech257.pem dest=~/.ssh/"`
+
+## adhoc commands
+- ping all the hosts in the hosts file:
+    `sudo ansible all -m ping`
+
+- ping all the hosts in the inventory file and display the output in super verbose mode.
+    `sudo ansible all -m ping -vvvv`
+
+- run the uname -a command (this will display the system information) on all the hosts in the inventory file:
+    `sudo ansible web -a "uname -a"`
+
+- run the date command on all the hosts in the inventory file.
+    `sudo ansible all -a "date"`
+
+- run the free command on all the hosts in the inventory file.
+    `sudo ansible all -a "free"`
+
+- run the ls -a command on all the hosts in the inventory file.
+    `sudo ansible all -a "ls -a"`
