@@ -12,7 +12,7 @@
 - Benefits:
     - Agentless don’t need to install any software to run or write it locally, can just install and run on the master node.
 
-1.Create 2x EC2 instances - one controller and one agent
+1. Create 2x EC2 instances - one controller and one agent make sure they're open to port 22 so the controller can ssh into the agent.
 2. On the controller run the following after the update and upgrade:
    - `sudo apt-get install software-properties-common`
    - `sudo apt-add-repository ppa:ansible/ansible`
