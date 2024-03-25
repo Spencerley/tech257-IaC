@@ -6,6 +6,8 @@
   - [When to use IaC?](#when-to-use-iac)
   - [Where to use IaC?](#where-to-use-iac)
   - [IaC Tools:](#iac-tools)
+    - [Deeper dive into tooling:](#deeper-dive-into-tooling)
+    - [Choosing the right tool depends on your specific needs.  Here's a quick guideline:](#choosing-the-right-tool-depends-on-your-specific-needs--heres-a-quick-guideline)
   - [Ansible and its Benefits:](#ansible-and-its-benefits)
   - [Who's using IaC and Ansible?](#whos-using-iac-and-ansible)
 
@@ -45,6 +47,74 @@ There are several popular tools available for IaC, including:
 - Ansible: An open-source tool that can be used for configuration management, application deployment, and IaC.
 - AWS CloudFormation: A proprietary tool from Amazon Web Services (AWS) that can be used to provision and manage AWS resources.
 - Azure Resource Manager (ARM): A proprietary tool from Microsoft Azure that can be used to provision and manage Azure resources.
+
+### Deeper dive into tooling:
+1. Terraform:
+
+- Focus: Open-source tool specifically designed for Infrastructure as Code.
+
+*Strengths:*
+
+- Multi-cloud and on-prem support: Provisions infrastructure across various cloud providers (AWS, Azure, GCP etc.) and on-premises infrastructure.
+- Hashicorp Configuration Language (HCL): Uses HCL, a declarative language specifically designed for IaC, making code easier to read and write.
+- State management: Manages the state of your infrastructure (what resources exist) and ensures deployments are idempotent (can be run multiple times without unintended changes).
+- Modules: Encourages code reusability through modular configuration files.
+
+*Weaknesses:*
+
+- Steeper learning curve: HCL might require some additional learning compared to simpler languages used by other tools.
+
+2. Ansible:
+
+- Focus: Open-source tool with broader functionality encompassing configuration management, application deployment, and IaC.
+
+*Strengths:*
+
+- Simple and agentless: Uses a human-readable YAML or JSON language and doesn't require software installation on managed machines.
+- Powerful modules: Offers a vast library of modules for managing various configurations and resources.
+- Flexibility: Can be used for more than just IaC, making it a versatile tool.
+
+*Weaknesses:*
+
+- State management is separate: Requires additional configuration for state management compared to Terraform's built-in solution.
+- Security considerations: As it's agentless, security needs careful attention when managing remote systems.
+
+3. AWS CloudFormation:
+
+- Focus: Proprietary tool specifically designed to manage infrastructure on Amazon Web Services (AWS).
+
+*Strengths:*
+
+- Native integration with AWS: Seamless integration with all AWS services for easy resource provisioning and management.
+- Cost estimates: Provides cost estimates during infrastructure creation.
+- AWS CloudFormation StackSets: Allows managing infrastructure across multiple AWS accounts and regions.
+
+*Weaknesses:*
+
+- Vendor lock-in: Limits you to the AWS cloud platform.
+- Less flexible language: Uses JSON or YAML templates, which can be less expressive compared to HCL.
+
+4. Azure Resource Manager (ARM):
+
+- Focus: Proprietary tool for managing infrastructure on Microsoft Azure.
+
+*Strengths:*
+
+- Native integration with Azure: Seamless experience for provisioning and managing Azure resources.
+- Azure Resource Manager (ARM) templates: Uses JSON or YAML templates for defining infrastructure.
+- Deployment options: Supports various deployment options like ARM templates, Bicep (a DSL for ARM templates), and Azure portal.
+
+*Weaknesses:*
+
+- Vendor lock-in: Limits you to the Microsoft Azure cloud platform.
+- Similar limitations to CloudFormation with regards to template language and flexibility.
+
+### Choosing the right tool depends on your specific needs.  Here's a quick guideline:
+
+- If you need a multi-cloud or on-premises IaC solution with strong state management, Terraform is a good choice.
+- If you prefer a simple and agentless tool for IaC or broader configuration management tasks, Ansible can be a great fit.
+- If you're heavily invested in AWS and want a native solution, AWS CloudFormation is a strong contender.
+- If you're working primarily on Microsoft Azure, Azure Resource Manager (ARM) is the natural choice.
 
 ## Ansible and its Benefits:
 Ansible is a popular open-source tool that can be used for configuration management, application deployment, and IaC. Ansible uses a simple, human-readable language and is agentless, meaning it doesn't require any software to be installed on the machines it manages.
