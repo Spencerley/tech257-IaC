@@ -14,3 +14,17 @@
   tasks:
     - name: installing mongodb in db server
       apt: pkg=mongodb state=present
+
+    - name: Update bind_ip to 0.0.0.0
+      lineinfile:
+        path: ../../etc/mongodb.conf
+        line: "bind_ip = 0.0.0.0"
+
+    - name: open port in mongodb.conf
+      lineinfile:
+        path: ../../etc/mongodb.conf
+        regexp: "^# port = 27017"
+        line: "port = 27017"
+
+    - name: restart mongodb service
+      service: name=mongodb state=restarted
