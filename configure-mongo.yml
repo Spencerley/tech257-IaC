@@ -12,19 +12,23 @@
 
   # add the instructions tasks
   tasks:
+# install mongodb in db server
     - name: installing mongodb in db server
       apt: pkg=mongodb state=present
 
+# update mongodb.conf file
     - name: Update bind_ip to 0.0.0.0
       lineinfile:
         path: ../../etc/mongodb.conf
         line: "bind_ip = 0.0.0.0"
 
+# open port in mongodb.conf
     - name: open port in mongodb.conf
       lineinfile:
         path: ../../etc/mongodb.conf
         regexp: "^# port = 27017"
         line: "port = 27017"
 
+# restart mongodb service
     - name: restart mongodb service
       service: name=mongodb state=restarted
