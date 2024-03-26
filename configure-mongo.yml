@@ -1,0 +1,16 @@
+---
+# creating a playbook to install mongodb in db server
+
+# Where would you like to install it
+- hosts: db
+
+  # logs requires
+  gather_facts: yes
+
+  # allow admin access
+  become: true
+
+  # add the instructions tasks
+  tasks:
+    - name: installing mongodb in db server
+      apt: pkg=mongodb state=present
