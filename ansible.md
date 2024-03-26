@@ -24,6 +24,14 @@
 4. Use the adhoc command to copy our ssh key from our controller to our agent:
     - `sudo ansible web -m ansible.builtin.copy -a "src=~/.ssh/tech257.pem dest=~/.ssh/"`
 
+`sudo apt-get install software-properties-common`
+
+`sudo apt-add-repository ppa:ansible/ansible`
+
+`sudo apt update -y`
+
+`sudo apt install ansible -ansible -y`
+
 ## adhoc commands
 - ping all the hosts in the hosts file:
     `sudo ansible all -m ping`
@@ -42,3 +50,6 @@
 
 - run the ls -a command on all the hosts in the inventory file.
     `sudo ansible all -a "ls -a"`
+
+- To test the syntax of the playbook:
+    `sudo ansible-playbook playbook.yml --syntax-check`
