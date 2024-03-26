@@ -16,7 +16,7 @@
 2. On the controller run the following after the update and upgrade:
    - `sudo apt-get install software-properties-common`
    - `sudo apt-add-repository ppa:ansible/ansible`
-   - in host file `ec2-instance ansible_host=3.255.121.145 ansible_user=ubuntu ansible_ssh_private_key_files=/.ssh/tech257.pem`
+   - in host file `ec2-instance ansible_host=3.255.121.145 ansible_user=ubuntu ansible_ssh_private_key_file=/.ssh/tech257.pem`
     - host has to be app agent ip
     - key files `<path to your private key>`
 3. Add your agents IP to the hosts folder
