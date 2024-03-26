@@ -55,3 +55,6 @@
 
 - To test the syntax of the playbook:
     `sudo ansible-playbook playbook.yml --syntax-check`
+
+- To check mongodb status on db vm:
+    `sudo ansible db -a "systemctl status mongodb"`
