@@ -11,28 +11,33 @@
 
 # instructions - tasks install nginx in agent node
   tasks:
+# Add env variable
   - name: Add env variable
     lineinfile:
       path: /home/ubuntu/.bashrc
       line: export DB_HOST=mongodb://18.201.98.61:27017/posts
       create: yes
 
+# Update env variable
   - name: source bashrc
     shell: source ~/.bashrc && echo $DB_HOST
     args:
       executable: /bin/bash
     register: result
 
+# Add nodejs apt key
   - name: "Add nodejs apt key"
     apt_key:
       url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
       state: present
 
+# Add nodejs 17.x ppa for apt repo
   - name: "Add nodejs 17.x ppa for apt repo"
     apt_repository:
       repo: deb https://deb.nodesource.com/node_17.x bionic main
       update_cache: yes
 
+# Install nodejs
   - name: Install nodejs
     apt:
       name: nodejs
@@ -55,6 +60,11 @@
     npm:
       path: /home/ubuntu/tech257-cicd-app/app
       state: present
+
+# seed db
+  - name: seed db
+    shell: node /home/ubuntu/tech257-cicd-app/app/seeds/seed.js
+
 
 # install pm2
   - name: install pm2
