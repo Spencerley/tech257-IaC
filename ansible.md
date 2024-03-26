@@ -32,6 +32,8 @@
 
 `sudo apt install ansible -ansible -y`
 
+- Before running scripts on agent machines always run update and upgrade on them! 
+
 ## adhoc commands
 - ping all the hosts in the hosts file:
     `sudo ansible all -m ping`
