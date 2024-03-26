@@ -44,9 +44,9 @@
 ## db-[99:101]-node.example.com
 
 [web]
-ec2-instance ansible_host=54.171.219.187 ansible_user=ubuntu ansible_ssh_private_key_files=~/.ssh/tech257.pem
+ec2-instance ansible_host=54.171.219.187 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech257.pem
 
 
 
 [db]
-ec2-instance ansible_host=18.201.98.61 ansible_user=ubuntu ansible_ssh_private_key_files=~/.ssh/tech257.pem
+ec2-instance ansible_host=18.201.98.61 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech257.pem
