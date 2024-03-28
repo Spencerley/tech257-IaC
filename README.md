@@ -10,6 +10,7 @@
     - [Choosing the right tool depends on your specific needs. Here's a quick guideline:](#choosing-the-right-tool-depends-on-your-specific-needs-heres-a-quick-guideline)
   - [Ansible and its Benefits:](#ansible-and-its-benefits)
   - [Who's using IaC and Ansible?](#whos-using-iac-and-ansible)
+  - [Terraform \& Ansible](#terraform--ansible)
 
 
 ## What is IaC?
@@ -138,3 +139,14 @@ IaC and Ansible are used by a wide range of organizations in all industries. Som
 - Goldman Sachs
 
 IaC and Ansible are becoming increasingly popular tools for automating the management of infrastructure. If you're looking for a way to improve the efficiency and reliability of your infrastructure management, then IaC and Ansible are definitely worth considering.
+
+
+## Terraform & Ansible
+- We can use Terraform to create instances and services within any cloud platform to set up and provision our infrastructure.
+![terraform workflow](images/terraform.png)
+
+- We can then use Ansible to install and update the software and add and run our applications and even upgrade our instances and services in our infrastructure set up by Terraform and we can use it to sdo this across every agent within our controllers ecosystem quickly and efficiently.
+![ansible workflow](images/ansible.png)
+
+- When we use a combination of Terraform and Ansible we can quickly and easily set up our infrastructure with few lines of code (thanks to Terraform) and then quickly and easily update, install and run our applications and software across potentially hundreds of instances silmultaneously thanks to Ansible.
+![combined workflow](images/combined.png)

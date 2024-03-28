@@ -86,4 +86,5 @@ resource "github_repository" "my_repo" {
   name = var.repo_name
   description = "Created using Terraform"
   visibility = var.visibility
+  
 }
