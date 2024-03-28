@@ -92,3 +92,7 @@
 - Essentially, Terraform acts as a bridge between your desired infrastructure configuration and the actual state in the cloud provider. It helps you automate the process of creating, modifying, and destroying infrastructure resources to achieve and maintain the desired state.
 
  - By understanding the distinction between desired and current state, you can effectively leverage Terraform to manage your infrastructure as code.
+
+## Terraform Variables
+- No need to import from variables.tf
+- Can call with var.var_name
