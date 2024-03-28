@@ -16,24 +16,24 @@ resource "aws_security_group" "app_security_group" {
   # three security rules
   # 1. allow ssh from local machine
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port = var.port1
+    to_port = var.port1
+    protocol = var.protocol
+    cidr_blocks = [var.cidr_block]
   }
   # 2. allow port 3000 from all
   ingress {
-    from_port = 3000
-    to_port = 3000
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port = var.port2
+    to_port = var.port2
+    protocol = var.protocol
+    cidr_blocks = [var.cidr_block]
   }
   #3. allow port 80 from all
   ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port = var.port3
+    to_port = var.port3
+    protocol = var.protocol
+    cidr_blocks = [var.cidr_block]
   }
 }
 
