@@ -46,7 +46,7 @@ resource "aws_instance" "app_instance" {
   instance_type = var.instance_type
 
   # please add public ip to instance
-  associate_public_ip_address = true
+  associate_public_ip_address = var.public_ip
 
   # security group
   security_groups = [aws_security_group.app_security_group.name]
