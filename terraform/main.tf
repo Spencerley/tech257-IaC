@@ -3,7 +3,7 @@
 # where to create it - provide cloud name
 provider "aws" {
   # which region (Ireland) to use to create a resource/service
-  region = "eu-west-1"
+  region = var.region
   # terraform will download all the required dependencies/plugins
   # terraform init
 }
@@ -37,6 +37,7 @@ resource "aws_security_group" "app_security_group" {
   }
 }
 
+
 # create an ec2 instance
 resource "aws_instance" "app_instance" {
   # which AMI ID:
@@ -50,7 +51,6 @@ resource "aws_instance" "app_instance" {
 
   # security group
   security_groups = [aws_security_group.app_security_group.name]
-
 
   # ssh key
   key_name = var.key_name
