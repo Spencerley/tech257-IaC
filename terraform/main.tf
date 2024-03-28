@@ -62,3 +62,28 @@ resource "aws_instance" "app_instance" {
 
 }
 # syntax of hashi corp lang is name {key = value}
+
+
+# automate the process of creating a github repo (could go to gitlab or bitbucket) we'll use our github
+# create a new repo called tech257-multi-provider-terraform
+# auth from github
+
+terraform {
+  required_providers {
+    github = {
+      source = "integrations/github"
+      version = "~> 5.0"
+  }
+}
+}
+
+provider "github" {
+  token = var.github_token
+  
+}
+
+resource "github_repository" "my_repo" {
+  name = var.repo_name
+  description = "Created using Terraform"
+  visibility = var.visibility
+}

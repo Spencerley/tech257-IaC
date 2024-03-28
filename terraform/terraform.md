@@ -96,3 +96,18 @@
 ## Terraform Variables
 - No need to import from variables.tf
 - Can call with var.var_name
+
+## Create Github repo using Terraform
+1. GitHub Personal Access Token: You'll need a GitHub Personal Access Token with permissions to create repositories. 
+    - Here's how to generate one:
+        - Go to your GitHub settings.
+        - Click on "Developer settings".
+        - Navigate to "Personal access tokens" and generate a new token.
+        - Grant the token "repo" or "admin" access (depending on your needs) and note down the generated token value. It's crucial to keep this token secure! Set it as a variable and make sure it doesn't get pushed anywhere!
+2. Create another required provider for github, source is "integrations/github" and check which version you need, I have used "~> 5.0"
+3. Create provider "github" with the token you created and stored as a variable earlier.
+4. Create resource like `resource "github_repository" "my_repo" {
+  name        = "your-repository-name"
+  description = "A repository created using Terraform"
+  visibility  = "public" # Can be "public" or "private"
+}`
