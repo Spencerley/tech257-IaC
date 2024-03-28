@@ -11,39 +11,39 @@ provider "aws" {
 
 #create security group
 resource "aws_security_group" "app_security_group" {
-  name        = "tech257-spencer-terraform-app-sg"
+  name = var.sg_name
   description = "Allow ssh, port 3000 and port 80"
   # three security rules
   # 1. allow ssh from local machine
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   # 2. allow port 3000 from all
   ingress {
-    from_port   = 3000
-    to_port     = 3000
-    protocol    = "tcp"
+    from_port = 3000
+    to_port = 3000
+    protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   #3. allow port 80 from all
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
 # create an ec2 instance
 resource "aws_instance" "app_instance" {
-  # which AMI ID: ami-02f0341ac93c96375
-  ami = "ami-02f0341ac93c96375"
+  # which AMI ID:
+  ami = var.app_ami_id
 
   # type of instance to launce
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
 
   # please add public ip to instance
   associate_public_ip_address = true
@@ -53,11 +53,11 @@ resource "aws_instance" "app_instance" {
 
 
   # ssh key
-  key_name = "tech257"
+  key_name = var.key_name
 
   # name service
   tags = {
-    Name = "tech257-spencer-terraform-app"
+    Name = var.machine_tag
   }
 
 }
