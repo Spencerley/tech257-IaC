@@ -39,6 +39,37 @@ resource "aws_security_group" "app_security_group" {
 
 
 # create an ec2 instance
+resource "aws_instance" "db_instance" {
+  # which AMI ID:
+  ami = var.app_ami_id
+
+  # type of instance to launce
+  instance_type = var.instance_type
+
+  # please add public ip to instance
+  associate_public_ip_address = var.public_ip
+
+  # security group
+  security_groups = [aws_security_group.app_security_group.name]
+
+  # ssh key
+  key_name = var.key_name
+
+  # name service
+  tags = {
+    Name = var.machine_tag
+  }
+
+  user_data = db.sh
+
+}
+# syntax of hashi corp lang is name {key = value}
+
+# get private ip
+variable "private_ip" {
+  default = aws_instance.db_instance.private_ip
+}
+
 resource "aws_instance" "app_instance" {
   # which AMI ID:
   ami = var.app_ami_id
@@ -60,8 +91,9 @@ resource "aws_instance" "app_instance" {
     Name = var.machine_tag
   }
 
+# user data app.sh
+  user_data = "app.sh ${var.private_ip}"
 }
-# syntax of hashi corp lang is name {key = value}
 
 
 # automate the process of creating a github repo (could go to gitlab or bitbucket) we'll use our github
