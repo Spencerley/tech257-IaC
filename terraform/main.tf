@@ -10,36 +10,48 @@ provider "aws" {
 # which service
 
 #create security group
-resource "aws_security_group" "app_security_group" {
-  name = var.sg_name
-  description = "Allow ssh, port 3000 and port 80"
+resource "aws_security_group" "spencer_app_security_group" {
+  name        = var.sg_name
+  description = "Allow ssh, port 5000, 3306 and port 80"
   # three security rules
   # 1. allow ssh from local machine
   ingress {
-    from_port = var.port1
-    to_port = var.port1
-    protocol = var.protocol
+    from_port   = var.port1
+    to_port     = var.port1
+    protocol    = var.protocol
     cidr_blocks = [var.cidr_block]
   }
   # 2. allow port 3000 from all
   ingress {
-    from_port = var.port2
-    to_port = var.port2
-    protocol = var.protocol
+    from_port   = var.port2
+    to_port     = var.port2
+    protocol    = var.protocol
     cidr_blocks = [var.cidr_block]
   }
   #3. allow port 80 from all
   ingress {
-    from_port = var.port3
-    to_port = var.port3
-    protocol = var.protocol
+    from_port   = var.port3
+    to_port     = var.port3
+    protocol    = var.protocol
+    cidr_blocks = [var.cidr_block]
+  }
+  ingress {
+    from_port   = var.port4
+    to_port     = var.port4
+    protocol    = var.protocol
+    cidr_blocks = [var.cidr_block]
+  }
+  egress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = var.protocol
     cidr_blocks = [var.cidr_block]
   }
 }
 
 
 # create an ec2 instance
-resource "aws_instance" "db_instance" {
+resource "aws_instance" "spencer_db_instance" {
   # which AMI ID:
   ami = var.app_ami_id
 
@@ -50,7 +62,7 @@ resource "aws_instance" "db_instance" {
   associate_public_ip_address = var.public_ip
 
   # security group
-  security_groups = [aws_security_group.app_security_group.name]
+  security_groups = [aws_security_group.spencer_app_security_group.name]
 
   # ssh key
   key_name = var.key_name
@@ -60,17 +72,19 @@ resource "aws_instance" "db_instance" {
     Name = var.machine_tag
   }
 
-  user_data = db.sh
-
+  user_data = <<EOF
+  #!/bin/bash
+    git clone https://github.com/developedbyluke/tech257-northwind-app.git repo
+    cd /repo/scripts
+    chmod +x db.sh
+	  ./db.sh
+    EOF
 }
+
 # syntax of hashi corp lang is name {key = value}
 
-# get private ip
-variable "private_ip" {
-  default = aws_instance.db_instance.private_ip
-}
-
-resource "aws_instance" "app_instance" {
+resource "aws_instance" "spencer_app_instance" {
+  depends_on = [aws_instance.spencer_db_instance]
   # which AMI ID:
   ami = var.app_ami_id
 
@@ -81,7 +95,7 @@ resource "aws_instance" "app_instance" {
   associate_public_ip_address = var.public_ip
 
   # security group
-  security_groups = [aws_security_group.app_security_group.name]
+  security_groups = [aws_security_group.spencer_app_security_group.name]
 
   # ssh key
   key_name = var.key_name
@@ -91,8 +105,14 @@ resource "aws_instance" "app_instance" {
     Name = var.machine_tag
   }
 
-# user data app.sh
-  user_data = "app.sh ${var.private_ip}"
+  # user data app.sh
+  user_data = <<EOF
+  #!/bin/bash
+    git clone https://github.com/developedbyluke/tech257-northwind-app.git repo
+    cd /repo/scripts
+    chmod +x app.sh
+	  ./app.sh
+  EOF
 }
 
 
@@ -100,23 +120,23 @@ resource "aws_instance" "app_instance" {
 # create a new repo called tech257-multi-provider-terraform
 # auth from github
 
-terraform {
-  required_providers {
-    github = {
-      source = "integrations/github"
-      version = "~> 5.0"
-  }
-}
-}
+# terraform {
+#   required_providers {
+#     github = {
+#       source = "integrations/github"
+#       version = "~> 5.0"
+#   }
+# }
+# }
 
-provider "github" {
-  token = var.github_token
-  
-}
+# provider "github" {
+#   token = var.github_token
 
-resource "github_repository" "my_repo" {
-  name = var.repo_name
-  description = "Created using Terraform"
-  visibility = var.visibility
-  
-}
+# }
+
+# resource "github_repository" "my_repo" {
+#   name = var.repo_name
+#   description = "Created using Terraform"
+#   visibility = var.visibility
+
+# }
