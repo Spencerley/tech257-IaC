@@ -42,9 +42,9 @@ resource "aws_security_group" "spencer_app_security_group" {
     cidr_blocks = [var.cidr_block]
   }
   egress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = var.protocol
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = [var.cidr_block]
   }
 }
@@ -53,7 +53,7 @@ resource "aws_security_group" "spencer_app_security_group" {
 # create an ec2 instance
 resource "aws_instance" "spencer_db_instance" {
   # which AMI ID:
-  ami = var.app_ami_id
+  ami = "ami-0c0128d5d818e041e"
 
   # type of instance to launce
   instance_type = var.instance_type
@@ -65,28 +65,24 @@ resource "aws_instance" "spencer_db_instance" {
   security_groups = [aws_security_group.spencer_app_security_group.name]
 
   # ssh key
-  key_name = var.key_name
+  key_name = "var.key_name"
 
   # name service
   tags = {
-    Name = var.machine_tag
+    Name = "spencer-terraform-db"
   }
 
-  user_data = <<EOF
-  #!/bin/bash
-    git clone https://github.com/developedbyluke/tech257-northwind-app.git repo
-    cd /repo/scripts
-    chmod +x db.sh
-	  ./db.sh
-    EOF
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo sytemctl start mysql
+              EOF
 }
-
 # syntax of hashi corp lang is name {key = value}
 
 resource "aws_instance" "spencer_app_instance" {
   depends_on = [aws_instance.spencer_db_instance]
   # which AMI ID:
-  ami = var.app_ami_id
+  ami = "ami-0679c70fa4a07eeb2"
 
   # type of instance to launce
   instance_type = var.instance_type
@@ -106,13 +102,10 @@ resource "aws_instance" "spencer_app_instance" {
   }
 
   # user data app.sh
-  user_data = <<EOF
-  #!/bin/bash
-    git clone https://github.com/developedbyluke/tech257-northwind-app.git repo
-    cd /repo/scripts
-    chmod +x app.sh
-	  ./app.sh
-  EOF
+  user_data = <<-EOF
+              #!/bin/bash
+              export DB_CONNECTION_URI="mysql://admin:password@${aws_instance.spencer_db_instance.private_ip}:3306"
+              EOF
 }
 
 
