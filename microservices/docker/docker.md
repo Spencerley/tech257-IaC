@@ -45,3 +45,17 @@
     - `docker commit <container id> spencerley/tech257-first-image:nginx-edit`
     - `docker push spencerley/tech257-first-image:nginx-edit`
 - Portmapping
+
+## Dockerfile to containerise an app
+1. Make sure you have a requirements.txt file in your repo.
+2. Create a Dockerfile with the following structure:
+   1. `# syntax=docker/dockerfile:1`
+   2. `FROM python:3.8`
+   3. `WORKDIR /app`
+   4. `COPY . .`
+   5. `RUN pip install --no-cache-dir -r requirements.txt`
+   6. `EXPOSE 5000`
+   7. `ENV FLASK_APP=northwind_web.py`
+   8. `CMD [ "waitress-serve", "--port=5000", "northwind_web:app"]`
+3. `docker build -t northwind .`
+4. `docker run -d -p 80:5000 northwind`
