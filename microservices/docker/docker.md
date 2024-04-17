@@ -59,3 +59,4 @@
    8. `CMD [ "waitress-serve", "--port=5000", "northwind_web:app"]`
 3. `docker build -t northwind .`
 4. `docker run -d -p 80:5000 northwind`
+5. Remember if stucke to find some documentation, this was helpful for me: https://www.freecodecamp.org/news/how-to-dockerize-a-flask-app/
