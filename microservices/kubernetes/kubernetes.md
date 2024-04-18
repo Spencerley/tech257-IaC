@@ -1,5 +1,12 @@
 # Kubernetes
 
+- [Kubernetes](#kubernetes)
+  - [What is Kubernetes?](#what-is-kubernetes)
+  - [How to use Kubernetes?](#how-to-use-kubernetes)
+  - [When to use Kubernetes?](#when-to-use-kubernetes)
+  - [Why use Kubernetes?](#why-use-kubernetes)
+  - [General Commands:](#general-commands)
+
 ## What is Kubernetes?
 
 - Kubernetes is an open-source system designed to automate the deployment, scaling, and management of containerized applications. It groups containers (which are essentially self-contained units of software) that make up an application into logical units for easier management and discovery.
