@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: nginx-svc
+  namespace: default # can name them in different namespaces within the same cluster
+spec:
+  ports:
+    - nodePort: 30001 # range is 30000-32768
+      port: 80
+      targetPort: 80
+  selector:
+    app: nginx # connects this service to the nginx deployment
+  type: NodePort # type of service. Also use LoadBalancer - for local use cluster IP
