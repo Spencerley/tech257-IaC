@@ -1,5 +1,11 @@
 # Docker
 
+- [Docker](#docker)
+  - [What is Docker?](#what-is-docker)
+  - [Dockerfile to containerise an app](#dockerfile-to-containerise-an-app)
+
+![Docker Diagram](../../images/docker-diagram.png)<br>
+
 ## What is Docker?
 - It’s a containerisation platform
 - It uses api’s in the background and makes it easier for us to communicate with anything we need
