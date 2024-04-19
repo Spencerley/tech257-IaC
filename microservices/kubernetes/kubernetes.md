@@ -6,6 +6,7 @@
   - [When to use Kubernetes?](#when-to-use-kubernetes)
   - [Why use Kubernetes?](#why-use-kubernetes)
   - [General Commands:](#general-commands)
+  - [Deployment with K8's](#deployment-with-k8s)
 
 ## What is Kubernetes?
 
@@ -45,3 +46,9 @@
 - `kubectl get svc`
 - `kubectl get pods`
 - `kubectl get deployment`
+
+## Deployment with K8's
+- You can use Kubernetes to deploy app instances and database instances in one cluster and link them.
+- Once you have created files for the database deployment, database service, app deployment and app service you can combine them into one file: [Sparta App Deployment.](sparta-app-deployment/sparta-app-full-deployment.yaml)
+- Then run `kubectl exec -it <pod name> -- node seeds/seed.js`
+- Go to your `localhost:<nodePort>` to test it works.
