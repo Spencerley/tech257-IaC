@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mongo-database-deployment
+
+spec:
+  selector:
+    matchLabels:
+      app: mongo-database
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo-database
+    spec:
+      containers:
+        - name: mongo-database
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
